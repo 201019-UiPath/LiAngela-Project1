@@ -1,0 +1,53 @@
+﻿@model IEnumerable<StoreDB.Models.Product>
+
+@{
+    ViewData["Title"] = "Ticket Categories";
+}
+
+<h1>Your ticket category list</h1>
+
+<p>
+    <a asp-controller="Product" asp-action="AddProduct">Add a ticket category</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TripType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TicketType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassengerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassengerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("View Ticketing Locations", "GetProductStockByProductId", new { productId = item.ProductId }) |
+                @Html.ActionLink("Ticket Category Details", "GetProductById", "Product", new { productId = item.ProductId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

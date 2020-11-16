@@ -1,0 +1,46 @@
+﻿@model StoreDB.Models.Product
+
+@{
+    ViewData["Title"] = "Ticket Category Details";
+}
+
+<h1>Ticket Category Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TripType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TripType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TicketType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TicketType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PassengerType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PassengerType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Manager" asp-action="GetAllProducts">Back to Ticket Category List</a>
+</div>

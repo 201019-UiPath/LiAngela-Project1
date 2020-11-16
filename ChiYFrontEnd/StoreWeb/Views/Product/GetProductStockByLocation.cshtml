@@ -1,0 +1,59 @@
+﻿@model IEnumerable<StoreDB.Models.ProductStock>
+
+@{
+    ViewData["Title"] = "Available Tickets";
+}
+
+<h1>Available Tickets at @Model.First().Location.Name</h1>
+
+<p>
+    <a asp-controller="Order" asp-action="AddOrderInfo" asp-route-locationId="@Model.First().LocationId">Proceed to Order at @Model.First().Location.Name</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Departure Location
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TripType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TicketType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.PassengerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityStocked)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TripType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TicketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.PassengerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityStocked)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

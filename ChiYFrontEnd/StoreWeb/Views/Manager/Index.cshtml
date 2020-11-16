@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Manage Your Shop";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome, Manager!</h1>
+    <br />
+    <h4>Do you want to...</h4>
+    <p>
+        <a asp-controller="Product" asp-action="AddProduct">Add a new ticket category</a>,<br />
+        <a asp-action="GetAllProducts">View your ticket categories</a>,<br />
+        <a asp-action="GetAllLocations">Restock your ticket inventory by location</a>,<br />
+        <a asp-action="GetAllLocations">View order history by location</a>, or<br />
+        <a asp-controller="Order" asp-action="GetAllOrders">View all orders placed at ChiY</a>?
+    </p>
+</div>

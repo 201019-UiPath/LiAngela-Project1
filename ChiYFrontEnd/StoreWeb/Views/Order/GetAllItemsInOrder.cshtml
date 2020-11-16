@@ -1,0 +1,50 @@
+﻿@model IEnumerable<StoreDB.Models.OrderItem>
+
+@{
+    ViewData["Title"] = "Items in Order";
+}
+
+<h1>Items in Order</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TripType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TicketType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.PassengerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityOrdered)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TripType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TicketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.PassengerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityOrdered)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

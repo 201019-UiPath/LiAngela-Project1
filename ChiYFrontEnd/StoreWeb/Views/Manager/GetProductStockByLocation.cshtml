@@ -1,0 +1,58 @@
+﻿@model IEnumerable<StoreDB.Models.ProductStock>
+
+@{
+    ViewData["Title"] = "Ticket Inventory";
+}
+
+<h1>Ticket Inventory at @Model.First().Location.Name</h1>
+
+<p>
+    <a asp-controller="Product" asp-action="AddProduct">Add a ticket category to the inventory</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TripType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TicketType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.PassengerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityStocked)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TripType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TicketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.PassengerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityStocked)
+            </td>
+            <td>
+                @Html.ActionLink("Restock Ticket Category", "UpdateProductStock", "Product", new { locationId=item.LocationId, productId=item.ProductId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

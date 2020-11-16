@@ -1,0 +1,49 @@
+﻿@model IEnumerable<StoreDB.Models.Order>
+
+@{
+    ViewData["Title"] = "All Orders Placed";
+}
+
+<h1>All Orders Placed</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                Location Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.ActionLink("View Order Details", "GetOrderById", new { orderId=item.OrderId }) |
+                @Html.ActionLink("View Items in Order", "GetAllItemsInOrder", new { orderId = item.OrderId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

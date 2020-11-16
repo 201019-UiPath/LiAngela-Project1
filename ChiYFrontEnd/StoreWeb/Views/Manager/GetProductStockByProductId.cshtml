@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StoreDB.Models.ProductStock>
+
+@{
+    ViewData["Title"] = "Ticketing Locations";
+}
+
+<h1>Ticketing Locations</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Departure Location
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TripType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.TicketType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.PassengerType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityStocked)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TripType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.TicketType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.PassengerType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityStocked)
+            </td>
+            <td>
+                <a asp-action="GetProductStockByLocation" asp-route-locationId="@item.LocationId">Restock @item.Location.Name</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

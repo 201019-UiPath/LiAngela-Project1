@@ -1,0 +1,93 @@
+﻿@model StoreWeb.Models.OrderInfo
+
+@{
+    ViewData["Title"] = "Place Your Order";
+}
+
+<h1>Place Your Order at @Model.AvailableOrderItems[0].Location.Name</h1>
+
+<h4>Choose your ticket quantities</h4>
+<hr />
+<div>
+    <a asp-controller="Location" asp-action="GetAllLocations">Back to Location List</a>
+</div>
+<br />
+
+<form asp-action="AddOrderInfo">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Departure Location
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvailableOrderItems[0].Location.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvailableOrderItems[0].Product.TicketType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvailableOrderItems[0].Product.PassengerType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvailableOrderItems[0].Product.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AvailableOrderItems[0].QuantityStocked)
+                </th>
+                <th>
+                    Quantity to Purchase
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.AvailableOrderItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.TripType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.TicketType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.PassengerType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.QuantityStocked)
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input asp-for="Cart[item.Product.ProductId]" class="form-control" value="0" />
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Prices[item.Product.ProductId]" class="form-control" type="hidden" value=@item.Product.Price />
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input asp-for="LocationId" class="form-control" type="hidden" value="@Model.LocationId" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-controller="Location" asp-action="GetAllLocations">Back to Location List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
