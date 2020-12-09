@@ -84,7 +84,6 @@ namespace StoreAPI.Controllers
         }
 
         [HttpGet("items/{orderId}")]
-        [Consumes("application/json")]
         [Produces("application/json")]
         [EnableCors("myAllowedOrigin")]
         public IActionResult GetAllItemsInOrder(int orderId)
